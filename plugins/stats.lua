@@ -114,6 +114,10 @@ chat_del_user('chat#id'..msg.to.id,'user#id'..msg.from.id,ok_cb,false)
 print('User '..msg.from.id..'is flooding '..msgs)
 msg = nil
 end
+if string.lower(string.sub(msg.from.id, -3)) == 'bot' then
+    chat_del_user('chat#id'..msg.to.id,'user#id'..msg.from.id,ok_cb,false)
+    print('User '..msg.from.id..'Was a bot ')
+end
 redis:setex(hash, TIME_CHECK, msgs+1)
 end
 
